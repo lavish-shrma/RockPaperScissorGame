@@ -6,38 +6,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Rock Paper Scissor</title>
+    <title>Rock Paper Scissors</title>
 </head>
 <style>
     * {
         margin: 10px;
         padding: 0px;
     }
+    body {
+        background-color: rgb(25, 25, 25);
+        color: azure;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .title {
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .move-icon {
+        height: 50px;
+    }
+    
+    .move-btn {
+        background-color: transparent;
+        border: 3px solid white;
+        width: 120px;
+        height: 120px;
+        border-radius: 60px;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    .result {
+        font-size: 25px;
+        font-weight: bold;
+        margin-top: 60px;
+    }
+    /* .score{
+        margin: 50px;
+    } */
+
+    .reset-score-btn{
+        background-color: white;
+        border: none;
+        font-size: 15px;
+        padding: 8px 15px;
+        cursor: pointer;
+    }
 </style>
 
 <body>
-    <p>
-        Rock Paper Scissor
+    <p class="title">
+        Rock Paper Scissors
     </p>
-    <button type="button" class="btn btn-outline-dark" onclick="
+    <button type="button" class="btn btn-outline-dark move-btn" onclick="
     PlayGame('rock');
-    ">Rock</button>
+    "><img src="images/rock-emoji.png" class="move-icon"></button>
 
 
-    <button type="button" class="btn btn-outline-dark" onclick="
+    <button type="button" class="btn btn-outline-dark move-btn" onclick="
     PlayGame('paper');
-    ">Paper</button>
+    "><img src="images/paper-emoji.png" class="move-icon"></button>
 
 
-    <button type="button" class="btn btn-outline-dark" onclick="
-    PlayGame('scissor');
-    ">Scissor</button>
+    <button type="button" class="btn btn-outline-dark move-btn" onclick="
+    PlayGame('scissors');
+    "><img src="images/scissors-emoji.png" class="move-icon"></button>
 
-    <p class="js-result"></p>
+    <p class="js-result result"></p>
     <p class="js-moves"></p>
-    <p class="js-score"></p>
+    <p class="js-score score"></p>
 
-    <button type="button" class="btn btn-outline-dark" onclick="
+    <button type="button" class="btn btn-outline-dark reset-score-btn" onclick="
     score.wins = 0;
     score.losses = 0;
     score.ties = 0;
@@ -73,12 +113,12 @@
 
             let result = '';
 
-            if (playerMove === 'scissor') {
+            if (playerMove === 'scissors') {
                 if (computerMove === 'rock') {
                     result = 'You lose.';
                 } else if (computerMove === 'paper') {
                     result = 'You win.';
-                } else if (computerMove === 'scissor') {
+                } else if (computerMove === 'scissors') {
                     result = 'Tie.';
                 }
 
@@ -87,7 +127,7 @@
                     result = 'You win.';
                 } else if (computerMove === 'paper') {
                     result = 'Tie.';
-                } else if (computerMove === 'scissor') {
+                } else if (computerMove === 'scissors') {
                     result = 'You lose.';
                 }
 
@@ -96,7 +136,7 @@
                     result = 'Tie.';
                 } else if (computerMove === 'paper') {
                     result = 'You lose.';
-                } else if (computerMove === 'scissor') {
+                } else if (computerMove === 'scissors') {
                     result = 'You win.';
                 }
             }
@@ -117,7 +157,10 @@
             innerHTML = result;
 
             document.querySelector('.js-moves').
-            innerHTML = `You ${playerMove} - ${computerMove}`;
+            innerHTML = `You
+        <img src="images/${playerMove}-emoji.png" class="move-icon">
+        <img src="images/${computerMove}-emoji.png" class="move-icon">
+        Computer`;
         }
 
         function updateScoreElement(){
@@ -135,7 +178,7 @@
             } else if (randomNumber >= 1 / 3 && randomNumber < 2 / 3) {
                 computerMove = 'paper';
             } else if (randomNumber >= 2 / 3 && randomNumber < 1) {
-                computerMove = 'scissor';
+                computerMove = 'scissors';
             }
 
             return computerMove;
