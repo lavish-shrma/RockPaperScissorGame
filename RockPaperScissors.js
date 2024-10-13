@@ -10,7 +10,7 @@ updateScoreElement();
 let isAutoPlaying = false;
 let intervalId;
 
-function autoPlay(){
+function autoPlay() {
     if(!isAutoPlaying){
         intervalId = setInterval(() => {
             const playerMove = pickcomputerMove();
@@ -22,6 +22,21 @@ function autoPlay(){
         isAutoPlaying = false;
     }
 }
+
+document.querySelector('.js-rock-btn')
+    .addEventListener('click', () => {
+        PlayGame('rock');
+    });
+
+document.querySelector('.js-paper-btn')
+    .addEventListener('click', () => {
+        PlayGame('paper');
+    });
+
+document.querySelector('.js-scissors-btn')
+    .addEventListener('click', () => {
+        PlayGame('scissors');
+    });    
 
 function PlayGame(playerMove) {
 
